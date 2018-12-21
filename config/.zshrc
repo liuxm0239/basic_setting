@@ -64,6 +64,18 @@ ZSH_THEME=( "robbyrussell_my" )
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
+  bundler
+  cpanm
+  docker
+  docker-compose
+  docker-machine
+  dotenv
+  Forklift
+  jsontools
+  man
+  python
+  redis-cli
+  xcode
 )
 
 source $ZSH/oh-my-zsh.sh
