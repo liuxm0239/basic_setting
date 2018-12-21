@@ -1,11 +1,10 @@
-" ShaoZhengjiang's vimrc.
-
 " Basic settings.
 syntax on
+set backspace=indent,eol,start ### for keyborad on mac os
 set showcmd
 set laststatus=1
 set foldenable
-set foldmethod=manual
+set foldmethod=marker
 set nocompatible
 set number
 if version >= 603
@@ -19,8 +18,11 @@ set shiftwidth=4
 set expandtab
 set showmatch
 set cursorline
+hi cursorline cterm=none term=none
+autocmd WinEnter * setlocal cursorline
+autocmd WinLeave * setlocal nocursorline
+highlight CursorLine guibg=#303000 ctermbg=234
 "set cc=120
-set foldmethod=marker
 set hlsearch
 
 " Auto add head info
@@ -62,15 +64,15 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe'
 "Plugin 'fholgado/minibufexpl.vim'
-Plugin 'scrooloose/nerdtree'
+"Plugin 'scrooloose/nerdtree'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'majutsushi/tagbar'
 Plugin 'dyng/ctrlsf.vim'
+Plugin 'majutsushi/tagbar'
 Plugin 'vim-airline/vim-airline'
-"Plugin 'vim-airline/vim-airline-themes'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'Yggdroot/indentLine'
-Plugin 'MattesGroeger/vim-bookmarks'
+"Plugin 'MattesGroeger/vim-bookmarks'
 Plugin 'vim-syntastic/syntastic'
 "Plugin 'suan/vim-instant-markdown'
 "Plugin 'rizzatti/dash.vim'
@@ -96,14 +98,14 @@ map <F3> :CtrlP<CR>
 "map <F4> :CtrlSF
 
 " Plugin indentLine settings.
-let g:indentLine_char = "︙"
+"let g:indentLine_char = "︙"
 let g:indentLine_enabled = 1
-let g:autopep8_disable_show_diff=1
+"let g:autopep8_disable_show_diff=1
 
 "" Plugin airline settings
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-"let g:airline_theme="xtermlight"
+"let g:airline_theme="hybrid"
 
 " Plugin YCM settings.
 set completeopt=longest,menu
@@ -120,14 +122,13 @@ let g:syntastic_cpp_check_header = 1
 let g:syntastic_cpp_remove_include_errors = 1
 
 " Plugin vim-bookmarks settings.
-highlight BookmarkSign ctermbg=NONE ctermfg=160
-highlight BookmarkLine ctermbg=194 ctermfg=NONE
+"highlight BookmarkSign ctermbg=NONE ctermfg=160
+"highlight BookmarkLine ctermbg=194 ctermfg=NONE
 
 " Plugin syntastic settings.
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
@@ -138,9 +139,9 @@ let g:syntastic_python_checkers = ['pylint']
 map <F6> :SyntasticToggleMode<CR> :SyntasticCheck<CR>
 
 " Ignore warnings about newlines trailing.
-let g:syntastic_quiet_messages = { 'regex': ['trailing-newlines', 'invalid-name',
-    \'too-many-lines', 'too-many-instance-attributes', 'too-many-public-methods',
-    \'too-many-locals', 'too-many-branches'] }
+"let g:syntastic_quiet_messages = { 'regex': ['trailing-newlines', 'invalid-name',
+"   \'too-many-lines', 'too-many-instance-attributes', 'too-many-public-methods',
+"    \'too-many-locals', 'too-many-branches'] }
 
 " Switch buffer
 nmap <C-b>n :bnext<CR>
